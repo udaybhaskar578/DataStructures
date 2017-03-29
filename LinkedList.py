@@ -64,6 +64,7 @@ class LinkedList:
     def addAsRoot(self,data):
         newNode = Node(data,self.root)
         self.root = newNode
+        self.size = self.size+1
     
     def addAtNthPosition(self,data,n):
         try:        
@@ -72,17 +73,35 @@ class LinkedList:
             elif n > self.__len__()+1:
                 raise StandardError()
             else:
-                
                 currentNode = self.root
                 for i in range(1,n-1):
                     currentNode = currentNode.next
                 newNode = Node(data,currentNode.next)
                 currentNode.next = newNode
+                self.size = self.size +1
                 
         except StandardError:
             print("The size of the linked list is less than the size of the desired position")
             print("Unable to Add "+str(data)+ " at "+str(n)+" position.")
-        
+
+    def deleteNodeAtNthPosition(self,n):
+        try:
+
+            currentNode = self.root
+            if n == 1:
+                self.root = currentNode.next
+                del currentNode
+            elif n > self.__len__()+1:
+                raise StandardError()
+            else:
+                for i in range(1,n-1):
+                    currentNode = currentNode.next
+                currentNode.next = (currentNode.next).next
+                x = currentNode.next
+                del x
+        except StandardError:
+            print("Out Of Bound: Unable to delete the element at "+str(n)+" position")
+
     def __len__(self):
         return self.size
     
@@ -99,10 +118,8 @@ if __name__ == '__main__':
     ll.printList()
     ll.addAsRoot(1)
     print("")
+    ll.deleteNodeAtNthPosition(6)
     ll.printList()
-    ll.search(14)
-    ll.delete(14)
-    ll.search(14)
 
 
 
