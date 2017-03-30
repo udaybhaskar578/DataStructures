@@ -86,7 +86,6 @@ class LinkedList:
 
     def deleteNodeAtNthPosition(self,n):
         try:
-
             currentNode = self.root
             if n == 1:
                 self.root = currentNode.next
@@ -100,10 +99,29 @@ class LinkedList:
                 x = currentNode.next
                 del x
         except StandardError:
-            print("Out Of Bound: Unable to delete the element at "+str(n)+" position")
+            print("Out Of Bound: Unable to delete the element at "+str(n)+" position")\
+    
+    def reverseList(self):
+        currentNode = self.root
+        prevNode = None
+        nextNode = None
+        while currentNode != None:
+            nextNode = currentNode.next
+            currentNode.next = prevNode
+            prevNode = currentNode
+            currentNode = nextNode
+        self.root = prevNode
+        self.printList()
+
 
     def __len__(self):
         return self.size
+    
+    def reversePrintRecursive(self,node):
+        if node == None:
+            return
+        self.reversePrintRecursive(node.next)
+        print(node.data)
     
 
 if __name__ == '__main__':
@@ -120,6 +138,10 @@ if __name__ == '__main__':
     print("")
     ll.deleteNodeAtNthPosition(6)
     ll.printList()
+    print("Reversed List Follow")
+    ll.reverseList()
+    ll.reversePrintRecursive(ll.root)
+
 
 
 
