@@ -114,10 +114,6 @@ class LinkedList:
         self.root = prevNode
         self.printList()
 
-
-    def __len__(self):
-        return self.size
-    
     def reversePrintRecursive(self,node):
         if node == None:
             return
@@ -132,7 +128,9 @@ class LinkedList:
         latter  = node.next
         latter.next = node
         node.next = None
-
+    def __len__(self):
+        return self.size
+    
     
 
 if __name__ == '__main__':
