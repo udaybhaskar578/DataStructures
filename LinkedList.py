@@ -7,6 +7,7 @@ class Node:
     def __init__(self,data,next):
         self.data = data
         self.next = next
+
 class LinkedList:
     def __init__(self):
         self.root = None
@@ -123,6 +124,16 @@ class LinkedList:
         self.reversePrintRecursive(node.next)
         print(node.data)
     
+    def reverseListRecursive(self,node):
+        if node.next is None:
+            self.root = node
+            return
+        self.reverseListRecursive(node.next)
+        latter  = node.next
+        latter.next = node
+        node.next = None
+
+    
 
 if __name__ == '__main__':
     ll = LinkedList()
@@ -140,7 +151,14 @@ if __name__ == '__main__':
     ll.printList()
     print("Reversed List Follow")
     ll.reverseList()
-    ll.reversePrintRecursive(ll.root)
+    print("Reversed the List Again recursively: ")
+    ll.reverseListRecursive(ll.root)
+    ll.printList()
+
+
+
+    
+
 
 
 
