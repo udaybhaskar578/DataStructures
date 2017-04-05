@@ -1,6 +1,6 @@
 '''
 Author: Sai Uday Bhaskar Mudivarty
-Program: Hash Table
+Program: Postfix Evaluation (Handles only integers)
 Process: Expression should have operands and operators seperated by a space ' '
          We require stack to solve this problem
          1.If input is operand(digit) we simple push them on stack.
@@ -26,18 +26,23 @@ def performOperation(op1,op,op2):
     return None
 
 def postfixEval(expression):
-    operators = set('+-*/')
-    s = expression.split(' ')
-    evallist = list()
-    for i in s:
-        if i.isdigit():
-            evallist.append(i)
-        elif i in operators:
-            evallist.append(performOperation(evallist.pop(),i,evallist.pop()))
-    return evallist.pop()
+    try:
+        operators = set('+-*/')
+        s = expression.split(' ')
+        evallist = list()
+        for i in s:
+            if i.isdigit():
+                evallist.append(i)
+            elif i in operators:
+                evallist.append(performOperation(evallist.pop(),i,evallist.pop()))
+            else:
+                raise ValueError()
+        return evallist.pop()
+    except ValueError:
+        print("This program only processes expressions with integer values in it")
 
 if __name__ == "__main__":
-    expression = "10 2 8 * + 3 -"
+    expression = "A * B + C * D"
     print(postfixEval(expression))
 
 
