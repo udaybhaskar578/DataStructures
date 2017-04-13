@@ -13,7 +13,16 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
         self.height = 0
+    
+    # @property
+    # def height(self):
+    #     return self.HeightOfTree()
 
+    # @height.setter
+    # def height(self):
+    #     self.height = self.HeightOfTree()
+    
+    
     def Insert(self,data):
         if self.root == None:
             self.root = Node(data)
@@ -31,18 +40,6 @@ class BinarySearchTree:
                 node.right = Node(data)
             else:
                 self._Insert(node.right,data)
-    
-    def println(self):
-        print("J+Holea")
-    def SearchTree(self,root,data):
-        if root == None:
-            return False
-        elif data == root.data:
-            return True
-        elif data <= root.data:
-            self.SearchTree(root.left,data)
-        else:
-            self.SearchTree(root.right,data)
 
     def Search(self,root,data):
         if root == None:
@@ -50,7 +47,6 @@ class BinarySearchTree:
         elif data == root.data:
             return True
         elif data <= root.data:
-            # print("Searching Further Left to "+str(root))
             return self.Search(root.left,data)
         else:
             return self.Search(root.right,data)
