@@ -2,6 +2,8 @@
 Author: Sai Uday Bhaskar Mudivarty
 Program: Binary search tree
 '''
+import Queue
+
 
 class Node:
     def __init__(self,data,left=None,right=None):
@@ -12,17 +14,8 @@ class Node:
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-        self.height = 0
-    
-    # @property
-    # def height(self):
-    #     return self.HeightOfTree()
+        self.height = 0  
 
-    # @height.setter
-    # def height(self):
-    #     self.height = self.HeightOfTree()
-    
-    
     def Insert(self,data):
         if self.root == None:
             self.root = Node(data)
@@ -90,6 +83,20 @@ class BinarySearchTree:
         else:
             return self._HeightOfTree(self.root)
 
+    def LevelOrderTraversal(self):
+        if self.root == None:
+            return
+        q = Queue.Queue()
+        q.enqueue(self.root)
+        while not q.isEmpty():
+            currentNode = q.front()
+            print(currentNode.data)
+            if currentNode.left !=None:
+                q.enqueue(currentNode.left)
+            if currentNode.right !=None:
+                q.enqueue(currentNode.right)
+            q.dequeue()
+
 if __name__ == "__main__":
     bst = BinarySearchTree()
     bst.Insert(15)
@@ -106,3 +113,4 @@ if __name__ == "__main__":
     print(bst.FindMax())
     print(bst.FindMin())
     print(bst.HeightOfTree())
+    bst.LevelOrderTraversal()
