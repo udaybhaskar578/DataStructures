@@ -84,6 +84,7 @@ class BinarySearchTree:
             return self._HeightOfTree(self.root)
 
     def LevelOrderTraversal(self):
+        print("Level Order Traversal: Breadth First Search")
         if self.root == None:
             return
         q = Queue.Queue()
@@ -97,6 +98,22 @@ class BinarySearchTree:
                 q.enqueue(currentNode.right)
             q.dequeue()
 
+    def PreOrderTraversal(self):
+        if self.root == None:
+            return
+        else:
+            print("Depth First Preorder Traversal")
+            self._PreOrderTraversal(self.root)
+    
+    def _PreOrderTraversal(self,node):
+        if node == None:
+            return
+        print(node.data,end=",")
+        self._PreOrderTraversal(node.left)
+        self._PreOrderTraversal(node.right)
+
+
+            
 if __name__ == "__main__":
     bst = BinarySearchTree()
     bst.Insert(15)
@@ -109,8 +126,9 @@ if __name__ == "__main__":
     bst.Insert(25)
     bst.Insert(21)
     bst.Insert(17)    
-    print(bst.Search(bst.root,22))
-    print(bst.FindMax())
-    print(bst.FindMin())
-    print(bst.HeightOfTree())
+    # print(bst.Search(bst.root,22))
+    # print(bst.FindMax())
+    # print(bst.FindMin())
+    # print(bst.HeightOfTree())
     bst.LevelOrderTraversal()
+    bst.PreOrderTraversal()
