@@ -102,7 +102,7 @@ class BinarySearchTree:
         if self.root == None:
             return
         else:
-            print("Depth First Preorder Traversal")
+            print("Depth First Preorder Traversal <Root><Left><Right>")
             self._PreOrderTraversal(self.root)
             print()
     
@@ -117,8 +117,9 @@ class BinarySearchTree:
         if self.root == None:
             return
         else:
-            print("Depth First Inorder Traversal: Gives you elements in a sorted order")
+            print("Depth First Inorder Traversal: Gives you elements in a sorted order <Left><Root><Right>")
             self._InOrderTraversal(self.root)
+            print()
     
     def _InOrderTraversal(self,node):
         if node == None:
@@ -126,6 +127,22 @@ class BinarySearchTree:
         self._InOrderTraversal(node.left)
         print(node.data,end=",")
         self._InOrderTraversal(node.right)
+
+    def PostOrderTraversal(self):
+        if self.root == None:
+            return
+        else:
+            print("Depth First Postorder Traversal:<Left><Right><Root>")
+            self._PostOrderTraversal(self.root)
+            print()
+    
+    def _PostOrderTraversal(self,node):
+        if node == None:
+            return
+        self._PostOrderTraversal(node.left)
+        self._PostOrderTraversal(node.right)
+        print(node.data,end=",")
+        
             
 if __name__ == "__main__":
     bst = BinarySearchTree()
@@ -139,10 +156,11 @@ if __name__ == "__main__":
     bst.Insert(25)
     bst.Insert(21)
     bst.Insert(17)    
-    # print(bst.Search(bst.root,22))
-    # print(bst.FindMax())
-    # print(bst.FindMin())
-    # print(bst.HeightOfTree())
+    print(bst.Search(bst.root,22))
+    print(bst.FindMax())
+    print(bst.FindMin())
+    print(bst.HeightOfTree())
     bst.LevelOrderTraversal()
     bst.PreOrderTraversal()
     bst.InOrderTraversal()
+    bst.PostOrderTraversal()
