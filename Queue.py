@@ -21,6 +21,9 @@ class Queue:
     def size(self):
         return len(self.items)
     
+    def front(self):
+        return self.items[len(self.items)-1]
+    
     def __str__(self):
         returnstring="Queue follows: \n"
         for element in self.items:
@@ -33,7 +36,9 @@ if __name__ == "__main__":
     queue.enqueue(1)
     queue.enqueue(5)
     queue.enqueue(10)
+    print(queue.front())
     print(queue.dequeue())
+    print(queue.front())
     print(queue.size())
     print(queue.isEmpty())
-    print(queue)
+    # print(queue)
