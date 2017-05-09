@@ -104,6 +104,7 @@ class BinarySearchTree:
         else:
             print("Depth First Preorder Traversal")
             self._PreOrderTraversal(self.root)
+            print()
     
     def _PreOrderTraversal(self,node):
         if node == None:
@@ -112,7 +113,19 @@ class BinarySearchTree:
         self._PreOrderTraversal(node.left)
         self._PreOrderTraversal(node.right)
 
-
+    def InOrderTraversal(self):
+        if self.root == None:
+            return
+        else:
+            print("Depth First Inorder Traversal: Gives you elements in a sorted order")
+            self._InOrderTraversal(self.root)
+    
+    def _InOrderTraversal(self,node):
+        if node == None:
+            return
+        self._InOrderTraversal(node.left)
+        print(node.data,end=",")
+        self._InOrderTraversal(node.right)
             
 if __name__ == "__main__":
     bst = BinarySearchTree()
@@ -132,3 +145,4 @@ if __name__ == "__main__":
     # print(bst.HeightOfTree())
     bst.LevelOrderTraversal()
     bst.PreOrderTraversal()
+    bst.InOrderTraversal()
