@@ -3,6 +3,8 @@ Author: Sai Uday Bhaskar Mudivarty
 Program: Binary search tree
 '''
 import Queue
+import sys
+
 
 
 class Node:
@@ -142,6 +144,21 @@ class BinarySearchTree:
         self._PostOrderTraversal(node.left)
         self._PostOrderTraversal(node.right)
         print(node.data,end=",")
+    
+    def IsBSTCheck(self):
+        return self._IsBSTCheckUtil(self.root,-sys.maxsize,sys.maxsize)
+    
+    def _IsBSTCheckUtil(self,node,min,max):
+        if node == None:
+            return True
+        if ((node.data >= min) and (node.data < max) and 
+        (self._IsBSTCheckUtil(node.left,min,node.data)) and 
+        (self._IsBSTCheckUtil(node.right,node.data,max))):
+            return True
+        else:
+            return False
+
+
         
             
 if __name__ == "__main__":
@@ -164,3 +181,4 @@ if __name__ == "__main__":
     bst.PreOrderTraversal()
     bst.InOrderTraversal()
     bst.PostOrderTraversal()
+    print(bst.IsBSTCheck())
