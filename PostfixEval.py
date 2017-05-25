@@ -34,6 +34,7 @@ def postfixEval(expression):
             if i.isdigit():
                 evallist.append(i)
             elif i in operators:
+                print(evallist)
                 evallist.append(performOperation(evallist.pop(),i,evallist.pop()))
             else:
                 raise ValueError()
@@ -42,7 +43,7 @@ def postfixEval(expression):
         print("This program only processes expressions with integer values in it")
 
 if __name__ == "__main__":
-    expression = "A * B + C * D"
+    expression = "2 3 *"
     print(postfixEval(expression))
 
 

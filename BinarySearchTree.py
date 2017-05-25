@@ -14,15 +14,7 @@ class BinarySearchTree:
         self.root = None
         self.height = 0
     
-    # @property
-    # def height(self):
-    #     return self.HeightOfTree()
 
-    # @height.setter
-    # def height(self):
-    #     self.height = self.HeightOfTree()
-    
-    
     def Insert(self,data):
         if self.root == None:
             self.root = Node(data)
@@ -76,6 +68,7 @@ class BinarySearchTree:
             return -1
         else:
             return self._FindMax(self.root)
+            
     def _HeightOfTree(self,root):
         if root == None:
             return -1

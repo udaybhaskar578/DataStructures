@@ -55,4 +55,4 @@ def convertInfixToPostfix(infixexpr):
 
 if __name__ == '__main__':
     print(convertInfixToPostfix("A * B + C * D"))
-    print(convertInfixToPostfix("(2 + 3) * 15 - (18 - 22) * (9 / 10)"))
+    print(convertInfixToPostfix("( 2 + 3 ) * 15 - ( 18 - 22 ) * ( 9 / 10 )"))

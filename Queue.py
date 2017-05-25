@@ -34,6 +34,6 @@ if __name__ == "__main__":
     queue.enqueue(5)
     queue.enqueue(10)
     print(queue.dequeue())
-    print(queue.size())
+    # print(queue.size())
     print(queue.isEmpty())
     print(queue)
