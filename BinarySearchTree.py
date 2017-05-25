@@ -2,6 +2,10 @@
 Author: Sai Uday Bhaskar Mudivarty
 Program: Binary search tree
 '''
+import Queue
+import sys
+
+
 
 class Node:
     def __init__(self,data,left=None,right=None):
@@ -12,8 +16,6 @@ class Node:
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-        self.height = 0
-    
 
     def Insert(self,data):
         if self.root == None:
@@ -83,6 +85,82 @@ class BinarySearchTree:
         else:
             return self._HeightOfTree(self.root)
 
+    def LevelOrderTraversal(self):
+        print("Level Order Traversal: Breadth First Search")
+        if self.root == None:
+            return
+        q = Queue.Queue()
+        q.enqueue(self.root)
+        while not q.isEmpty():
+            currentNode = q.front()
+            print(currentNode.data)
+            if currentNode.left !=None:
+                q.enqueue(currentNode.left)
+            if currentNode.right !=None:
+                q.enqueue(currentNode.right)
+            q.dequeue()
+
+    def PreOrderTraversal(self):
+        if self.root == None:
+            return
+        else:
+            print("Depth First Preorder Traversal <Root><Left><Right>")
+            self._PreOrderTraversal(self.root)
+            print()
+    
+    def _PreOrderTraversal(self,node):
+        if node == None:
+            return
+        print(node.data,end=",")
+        self._PreOrderTraversal(node.left)
+        self._PreOrderTraversal(node.right)
+
+    def InOrderTraversal(self):
+        if self.root == None:
+            return
+        else:
+            print("Depth First Inorder Traversal: Gives you elements in a sorted order <Left><Root><Right>")
+            self._InOrderTraversal(self.root)
+            print()
+    
+    def _InOrderTraversal(self,node):
+        if node == None:
+            return
+        self._InOrderTraversal(node.left)
+        print(node.data,end=",")
+        self._InOrderTraversal(node.right)
+
+    def PostOrderTraversal(self):
+        if self.root == None:
+            return
+        else:
+            print("Depth First Postorder Traversal:<Left><Right><Root>")
+            self._PostOrderTraversal(self.root)
+            print()
+    
+    def _PostOrderTraversal(self,node):
+        if node == None:
+            return
+        self._PostOrderTraversal(node.left)
+        self._PostOrderTraversal(node.right)
+        print(node.data,end=",")
+    
+    def IsBSTCheck(self):
+        return self._IsBSTCheckUtil(self.root,-sys.maxsize,sys.maxsize)
+    
+    def _IsBSTCheckUtil(self,node,min,max):
+        if node == None:
+            return True
+        if ((node.data >= min) and (node.data < max) and 
+        (self._IsBSTCheckUtil(node.left,min,node.data)) and 
+        (self._IsBSTCheckUtil(node.right,node.data,max))):
+            return True
+        else:
+            return False
+
+
+        
+            
 if __name__ == "__main__":
     bst = BinarySearchTree()
     bst.Insert(15)
@@ -99,3 +177,8 @@ if __name__ == "__main__":
     print(bst.FindMax())
     print(bst.FindMin())
     print(bst.HeightOfTree())
+    bst.LevelOrderTraversal()
+    bst.PreOrderTraversal()
+    bst.InOrderTraversal()
+    bst.PostOrderTraversal()
+    print(bst.IsBSTCheck())
